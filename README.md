@@ -1,6 +1,6 @@
 # Learnzy-Learning-System
 
-Welcome to Learnzy, an interactive learning platform designed to make learning fun and effective for children of children of preschool and school age. Our application offers a wide range of content from various areas, including the alphabet, spelling, math, animals, and more. With a user-friendly interface and engaging content, children can learn and improve their knowledge through various games and quizzes.
+Welcome to Learnzy, an interactive learning platform designed to make learning fun and effective for children of preschool and school age. Our application offers a wide range of content from various areas, including the alphabet, spelling, math, animals, and more. With a user-friendly interface and engaging content, children can learn and improve their knowledge through various games and quizzes.
 
 The Learnzy application is designed to be used with the help of an adult, with a simple interface that allows for easy navigation to desired activities. Parents can track their child's progress and identify areas for improvement, ensuring a personalized learning experience.
 
