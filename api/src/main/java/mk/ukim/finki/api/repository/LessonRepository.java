@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface LessonRepository extends JpaRepository<Lesson,Long> {
-    List<Lesson> findAllByTitleLike(String title);
-    List<Lesson> findAllByTitleLikeAndAndCategory(String title, Category category);
     List<Lesson> findAllByCategory(Category category);
     List<Lesson> findAllByLevel(Level level);
 }
