@@ -1,16 +1,47 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
+import Head from "next/head";
 
 import { Sidebar } from "./Sidebar";
 
 type Props = {
   title: string;
+  browserTabTitle: string;
   children: React.ReactNode;
 };
 
-export const Layout = ({ children, title }: Props) => {
+export const Layout = ({ children, title, browserTabTitle }: Props) => {
   return (
     <Flex height="100vh">
+      <Head>
+        <title>{browserTabTitle}</title>
+        <meta name="browser tag title" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        ></link>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        ></link>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        ></link>
+        <link rel="manifest" href="/site.webmanifest"></link>
+        <link
+          rel="mask-icon"
+          href="/safari-pinned-tab.svg"
+          color="#32b96d"
+        ></link>
+        <meta name="msapplication-TileColor" content="#2b5797"></meta>
+        <meta name="theme-color" content="#ffffff"></meta>
+      </Head>
       {/* Sidebar */}
       <Flex width="20%" backgroundColor="#FFE2D6" padding="4">
         <Sidebar

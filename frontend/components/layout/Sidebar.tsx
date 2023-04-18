@@ -36,6 +36,8 @@ export const Sidebar = ({ userName, onSignOut }: Props) => {
         <VStack spacing="0.5" align="start">
           {sidebarItems.map((item, index) => (
             <Button
+              _hover={{ background: "#F4745861" }}
+              borderRadius="0px"
               color="#441907"
               key={index}
               as="a"
