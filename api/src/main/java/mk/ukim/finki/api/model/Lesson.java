@@ -35,5 +35,4 @@ public class Lesson {
         this.urlPhoto = urlPhoto;
         this.urlVideo = urlVideo;
     }
-
 }
