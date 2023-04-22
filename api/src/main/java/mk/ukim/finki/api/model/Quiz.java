@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -24,5 +25,9 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
-    //TODO: add property for the lesson
+    @OneToOne(mappedBy = "quiz")
+    private Lesson lesson;
+
+    @OneToMany(mappedBy = "quiz")
+    Set<QuizScore> scores;
 }
