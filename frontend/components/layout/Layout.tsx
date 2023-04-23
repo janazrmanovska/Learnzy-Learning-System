@@ -1,16 +1,19 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Spacer, Avatar } from "@chakra-ui/react";
 import Head from "next/head";
 
 import { Sidebar } from "./Sidebar";
+import { GENERATE_PROFILE_PICK_URL } from "../../constants";
 
 type Props = {
   title: string;
   browserTabTitle: string;
   children: React.ReactNode;
+  isMyProfilePage: Boolean;
 };
 
-export const Layout = ({ children, title, browserTabTitle }: Props) => {
+export const Layout = ({ children, title, browserTabTitle, isMyProfilePage }: Props) => {
+  const profileImageUrl = `${GENERATE_PROFILE_PICK_URL}${"Mary Parker"}`;
   return (
     <Flex height="100vh">
       <Head>
@@ -64,6 +67,15 @@ export const Layout = ({ children, title, browserTabTitle }: Props) => {
           justifyContent="flex-start"
         >
           {title}
+          <Spacer/>
+          <Avatar
+              size="lg"
+              rounded="full"
+              marginRight="10"
+              marginTop="2"
+              name="Mary Parker"
+              src={profileImageUrl}
+            />
         </Flex>
 
         {/* Main Content */}
