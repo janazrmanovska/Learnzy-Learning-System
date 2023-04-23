@@ -17,4 +17,5 @@ public class ApiApplication {
         return new BCryptPasswordEncoder(10);
     }
 
+
 }
