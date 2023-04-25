@@ -22,6 +22,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 
 @Entity
@@ -39,6 +40,9 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    Set<QuizScore> scores;
 
     @Enumerated
     private Role role;

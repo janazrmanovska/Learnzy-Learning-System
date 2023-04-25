@@ -3,6 +3,7 @@ package mk.ukim.finki.api.service.Impl;
 import mk.ukim.finki.api.model.Category;
 import mk.ukim.finki.api.model.Lesson;
 import mk.ukim.finki.api.model.Level;
+import mk.ukim.finki.api.model.Quiz;
 import mk.ukim.finki.api.model.exceptions.CategoryIdNotFoundException;
 import mk.ukim.finki.api.model.exceptions.LessonNotFoundException;
 import mk.ukim.finki.api.repository.CategoryRepository;
@@ -39,12 +40,14 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public Lesson create(String title, String description, Category category, Level level, String urlPhoto, String urlVideo) {
-        return this.lessonRepository.save(new Lesson(title, description, category, level, urlPhoto, urlVideo));
+    public Lesson create(String title, String description, Category category, Level level,
+                         String urlPhoto, String urlVideo, Quiz quiz) {
+        return this.lessonRepository.save(new Lesson(title, description, category, level, urlPhoto, urlVideo, quiz));
     }
 
     @Override
-    public Lesson update(Long id, String title, String description, Long category, Level level, String urlPhoto, String urlVideo) {
+    public Lesson update(Long id, String title, String description, Long category, Level level,
+                         String urlPhoto, String urlVideo, Quiz quiz) {
         Lesson lesson = this.findById(id);
         lesson.setTitle(title);
         lesson.setDescription(description);
@@ -56,6 +59,7 @@ public class LessonServiceImpl implements LessonService {
         lesson.setLevel(level);
         lesson.setUrlPhoto(urlPhoto);
         lesson.setUrlVideo(urlVideo);
+        lesson.setQuiz(quiz);
 
         return this.lessonRepository.save(lesson);
     }
