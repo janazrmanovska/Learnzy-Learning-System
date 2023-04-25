@@ -27,12 +27,18 @@ public class Lesson {
     @Column(length=1000000)
     String urlVideo;
 
-    public Lesson(String title, String description, Category category, Level level, String urlPhoto, String urlVideo){
+    @OneToOne
+    @JoinColumn(name = "quiz_id", nullable = false)
+    private Quiz quiz;
+
+    public Lesson(String title, String description, Category category, Level level, String urlPhoto,
+                  String urlVideo, Quiz quiz){
         this.title = title;
         this.description = description;
         this.category = category;
         this.level = level;
         this.urlPhoto = urlPhoto;
         this.urlVideo = urlVideo;
+        this.quiz = quiz;
     }
 }
