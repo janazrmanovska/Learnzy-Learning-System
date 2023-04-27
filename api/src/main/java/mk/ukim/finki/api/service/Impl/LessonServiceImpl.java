@@ -1,16 +1,19 @@
 package mk.ukim.finki.api.service.Impl;
 
+
 import jakarta.transaction.Transactional;
 import mk.ukim.finki.api.model.Lesson;
 import mk.ukim.finki.api.model.LevelLesson;
 import mk.ukim.finki.api.repository.LessonRepository;
 import mk.ukim.finki.api.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+
 @Transactional
 public class LessonServiceImpl implements LessonService {
     @Autowired
@@ -58,5 +61,6 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public List<Lesson> getLessonsByLevel(LevelLesson level) {
         return lessonRepository.findByLevel(level);
+
     }
 }

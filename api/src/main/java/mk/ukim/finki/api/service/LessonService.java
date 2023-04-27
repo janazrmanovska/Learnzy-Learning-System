@@ -1,11 +1,14 @@
 package mk.ukim.finki.api.service;
 
+
 import mk.ukim.finki.api.model.Lesson;
 import mk.ukim.finki.api.model.LevelLesson;
+
 
 import java.util.List;
 
 public interface LessonService {
+
     List<Lesson> getAllLessons();
 
     Lesson getLessonById(Long id);
@@ -20,3 +23,4 @@ public interface LessonService {
 
     List<Lesson> getLessonsByLevel(LevelLesson level);
 }
+
