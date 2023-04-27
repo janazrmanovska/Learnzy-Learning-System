@@ -1,20 +1,26 @@
 package mk.ukim.finki.api.service;
 
-import mk.ukim.finki.api.model.Category;
+
 import mk.ukim.finki.api.model.Lesson;
-import mk.ukim.finki.api.model.Level;
-import mk.ukim.finki.api.model.Quiz;
+import mk.ukim.finki.api.model.LevelLesson;
+
 
 import java.util.List;
 
 public interface LessonService {
-    List<Lesson> findAll();
-    Lesson findById(Long id);
-    void deleteById(Long id);
-    Lesson create(String title, String description, Category category, Level level,
-                  String urlPhoto, String urlVideo, Quiz quiz);
-    Lesson update(Long id, String title, String description, Long category, Level level,
-                  String urlPhoto, String urlVideo, Quiz quiz);
-    List<Lesson> filterLevel(Level level);
-    List<Lesson> filterCategory(Long categoryId);
+
+    List<Lesson> getAllLessons();
+
+    Lesson getLessonById(Long id);
+
+    Lesson createLesson(Lesson lesson);
+
+    Lesson updateLesson(Long id, Lesson lesson);
+
+    void deleteLesson(Long id);
+
+    List<Lesson> getLessonsByCategoryName(String categoryName);
+
+    List<Lesson> getLessonsByLevel(LevelLesson level);
 }
+

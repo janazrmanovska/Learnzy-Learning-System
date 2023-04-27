@@ -1,36 +1,25 @@
 package mk.ukim.finki.api.model;
 
-import jakarta.persistence.*;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-
 @AllArgsConstructor
-
 @NoArgsConstructor
-public class Lesson {
+public class CategoryLesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
-    private String title;
+    private String name;
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private CategoryLesson category;
-
-    @Enumerated(EnumType.STRING)
-    private LevelLesson level;
-
-    private String urlPhoto;
-
-    private String urlVideo;
 
 }
