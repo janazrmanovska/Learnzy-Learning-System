@@ -5,7 +5,7 @@ import { VscSignOut } from "react-icons/vsc";
 import { Avatar, Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
 
 import { SidebarItem } from "../../types/sidebar";
-import { GENERATE_PROFILE_PICK_URL } from "../../constants";
+import { GENERATE_PROFILE_PICK_URL } from "../../constants/shared";
 
 type Props = {
   userName: string;
