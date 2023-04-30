@@ -7,6 +7,7 @@ import mk.ukim.finki.api.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -22,14 +23,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category findById(Long id) {
-        return this.categoryRepository.findById(id)
-                .orElseThrow(()->new CategoryIdNotFoundException(id));
+    public Optional<Category> findById(Long id) {
+        return this.categoryRepository.findById(id);
     }
 
     @Override
-    public Category create(String name, String description) {
-        return this.categoryRepository.save(new Category(name, description));
+    public Optional<Category> create(String name, String description) {
+        return Optional.of(this.categoryRepository.save(new Category(name, description)));
     }
 
     @Override
@@ -44,5 +44,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(String name) {
         this.categoryRepository.deleteByName(name);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+      this.categoryRepository.deleteById(id);
     }
 }
