@@ -22,5 +22,5 @@ public class QuizScore {
     @JoinColumn(name = "quiz_id")
     Quiz quiz;
 
-    double score;
+    Double score;
 }

@@ -1,9 +1,7 @@
 package mk.ukim.finki.api.model;
 
 import jakarta.persistence.*;
-
 import lombok.AllArgsConstructor;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,5 +30,9 @@ public class Lesson {
     private String urlPhoto;
 
     private String urlVideo;
+
+    @OneToOne
+    @JoinColumn(name = "quiz_id", nullable = false)
+    private Quiz quiz;
 
 }
