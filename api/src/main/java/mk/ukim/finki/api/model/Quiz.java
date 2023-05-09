@@ -1,14 +1,16 @@
 package mk.ukim.finki.api.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Set;
 
-@Data
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 public class Quiz {
 
@@ -29,5 +31,6 @@ public class Quiz {
     private Lesson lesson;
 
     @OneToMany(mappedBy = "quiz")
-    Set<QuizScore> scores;
+    private Set<QuizScore> scores;
+
 }

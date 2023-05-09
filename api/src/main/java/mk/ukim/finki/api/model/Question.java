@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Map;
 
 @Data
 @Entity
@@ -21,6 +21,13 @@ public class Question {
 
     private String questionContent;
 
-    @OneToMany(mappedBy = "question")
-    private List<Answer> possibleAnswers;
+    @ElementCollection
+    @CollectionTable(name = "question_answer", joinColumns = @JoinColumn(name = "question_id"))
+    @MapKeyColumn(name = "answer_content")
+    @Column(name = "is_correct")
+    private Map<String, Boolean> possibleAnswers;
+
+    private String chosenAnswer;
+
+    private Boolean isCorrectlyAnswered;
 }
