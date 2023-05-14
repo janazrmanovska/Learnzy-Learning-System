@@ -31,7 +31,7 @@ public class LessonRestController {
         return new ResponseEntity<>(lesson, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     @PreAuthorize(value = "hasRole('ADMIN')")
     public ResponseEntity<Lesson> addLesson(@RequestBody Lesson lesson) {
         Lesson createdLesson = lessonService.createLesson(lesson);
