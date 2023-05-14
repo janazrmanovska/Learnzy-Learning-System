@@ -4,14 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mk.ukim.finki.api.model.Role;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class RegisterRequest {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
+
+  private String firstname;
+  private String lastname;
+  private String email;
+  private String password;
+  private Role role;
 }
