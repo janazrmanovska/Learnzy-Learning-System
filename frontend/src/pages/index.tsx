@@ -17,16 +17,28 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { CategoryDisplayItem } from "../../types/categories";
 
 const Categories: NextPage = () => {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedCategory, setSelectedCategory] =
+    useState<CategoryDisplayItem>();
 
   return (
     <Layout title={"Let's Learn"} browserTabTitle={"Learnzy - Categories"}>
       <SimpleGrid columns={5} spacing={10}>
         {CategoryItems.map((category) => {
-          return <CategoryItem category={category} onCardClick={onOpen} />;
+          return (
+            <CategoryItem
+              category={category}
+              onCardClick={() => {
+                setSelectedCategory(category);
+                onOpen();
+              }}
+            />
+          );
         })}
         {isOpen && (
           <Modal isOpen={isOpen} onClose={onClose}>
@@ -43,7 +55,11 @@ const Categories: NextPage = () => {
                   borderRadius="23px"
                   backgroundColor="#F47458"
                   rightIcon={<VscArrowRight />}
-                  onClick={() => router.push("/lessons")}
+                  onClick={() =>
+                    router.push(
+                      `/lessons?level=1?category=${selectedCategory?.title}`
+                    )
+                  }
                 >
                   BASIC
                 </Button>
@@ -52,7 +68,11 @@ const Categories: NextPage = () => {
                   borderRadius="23px"
                   backgroundColor="#F47458"
                   rightIcon={<VscArrowRight />}
-                  onClick={() => router.push("/lessons")}
+                  onClick={() =>
+                    router.push(
+                      `/lessons?level=2?category=${selectedCategory?.title}`
+                    )
+                  }
                 >
                   ADVANCED
                 </Button>
