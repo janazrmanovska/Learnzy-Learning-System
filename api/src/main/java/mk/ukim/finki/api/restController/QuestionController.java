@@ -5,6 +5,7 @@ import mk.ukim.finki.api.service.QuestionService;
 import mk.ukim.finki.api.service.dto.QuestionDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class QuestionController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<QuestionDto> createQuestion (@RequestBody QuestionRequest question) {
         QuestionDto questionDto = this.questionService.createQuestion(question);
         return new ResponseEntity<>(questionDto, HttpStatus.OK);
