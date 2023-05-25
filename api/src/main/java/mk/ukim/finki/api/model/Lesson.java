@@ -20,17 +20,13 @@ public class Lesson {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private CategoryLesson category;
+    private Category category;
 
     @Enumerated(EnumType.STRING)
-    private LevelLesson level;
+    private Level level;
 
     private String urlPhoto;
 
     private String urlVideo;
-
-    @OneToOne
-    @JoinColumn(name = "quiz_id", nullable = false)
-    private Quiz quiz;
 
 }

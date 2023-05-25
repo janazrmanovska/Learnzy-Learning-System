@@ -1,7 +1,8 @@
 package mk.ukim.finki.api.restController;
 
 import mk.ukim.finki.api.model.Lesson;
-import mk.ukim.finki.api.model.LevelLesson;
+import mk.ukim.finki.api.model.Level;
+import mk.ukim.finki.api.restController.requests.LessonRequest;
 import mk.ukim.finki.api.service.LessonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("api/lessons")
+@RequestMapping("/api/lessons")
 public class LessonRestController {
     private final LessonService lessonService;
 
@@ -33,14 +34,15 @@ public class LessonRestController {
 
     @PostMapping("/add")
     @PreAuthorize(value = "hasRole('ADMIN')")
-    public ResponseEntity<Lesson> addLesson(@RequestBody Lesson lesson) {
+    public ResponseEntity<Lesson> addLesson(@RequestBody LessonRequest lesson) {
         Lesson createdLesson = lessonService.createLesson(lesson);
         return new ResponseEntity<>(createdLesson, HttpStatus.CREATED);
     }
 
     @PutMapping("/{lesson_id}")
     @PreAuthorize(value = "hasRole('ADMIN')")
-    public ResponseEntity<Lesson> updateLesson(@PathVariable("lesson_id") Long lessonId, @RequestBody Lesson lesson) {
+    public ResponseEntity<Lesson> updateLesson(@PathVariable("lesson_id") Long lessonId,
+                                               @RequestBody Lesson lesson) {
         Lesson updatedLesson = lessonService.updateLesson(lessonId, lesson);
         return new ResponseEntity<>(updatedLesson, HttpStatus.OK);
     }
@@ -51,14 +53,14 @@ public class LessonRestController {
         lessonService.deleteLesson(lessonId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @GetMapping("/category/{categoryName}")
-    public ResponseEntity<List<Lesson>> getLessonsByCategoryName(@PathVariable String categoryName) {
-        List<Lesson> lessons = lessonService.getLessonsByCategoryName(categoryName);
-        return new ResponseEntity<>(lessons, HttpStatus.OK);
-    }
+//    @GetMapping("/category/{categoryName}")
+//    public ResponseEntity<List<Lesson>> getLessonsByCategoryName(@PathVariable String categoryName) {
+//        List<Lesson> lessons = lessonService.getLessonsByCategoryName(categoryName);
+//        return new ResponseEntity<>(lessons, HttpStatus.OK);
+//    }
 
     @GetMapping("/level/{level}")
-    public ResponseEntity<List<Lesson>> getLessonsByLevel(@PathVariable LevelLesson level) {
+    public ResponseEntity<List<Lesson>> getLessonsByLevel(@PathVariable Level level) {
         List<Lesson> lessons = lessonService.getLessonsByLevel(level);
         return new ResponseEntity<>(lessons, HttpStatus.OK);
     }
