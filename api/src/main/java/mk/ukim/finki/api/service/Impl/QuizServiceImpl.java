@@ -1,6 +1,5 @@
 package mk.ukim.finki.api.service.Impl;
 
-import mk.ukim.finki.api.model.Lesson;
 import mk.ukim.finki.api.model.Question;
 import mk.ukim.finki.api.model.Quiz;
 import mk.ukim.finki.api.repository.LessonRepository;
@@ -45,8 +44,6 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Quiz createQuiz(QuizRequest quizRequest) {
 
-        Lesson lesson = this.lessonRepository.findById(quizRequest.getLessonId()).get();
-
         List<Question> questions = new ArrayList<>();
         for (long quizId : quizRequest.getQuestionIds()) {
             questions.add(this.questionRepository.findById(quizId).get());
@@ -57,9 +54,10 @@ public class QuizServiceImpl implements QuizService {
         quiz.setName(quizRequest.getName());
         quiz.setDescription(quizRequest.getDescription());
         quiz.setTotalQuestions(quizRequest.getTotalQuestions());
-        quiz.setLesson(lesson);
         quiz.setQuestions(questions);
         quiz.setScores(new HashSet<>());
+
+        this.quizRepository.save(quiz);
 
         return quiz;
     }

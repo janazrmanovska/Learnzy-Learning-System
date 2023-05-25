@@ -15,6 +15,4 @@ public class QuizRequest {
 
     private List<Long> questionIds;
 
-    private Long lessonId;
-
 }
