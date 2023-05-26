@@ -1,6 +1,6 @@
 package mk.ukim.finki.api.service.Impl;
 
-import io.swagger.v3.oas.annotations.servers.Server;
+import mk.ukim.finki.api.model.User;
 import mk.ukim.finki.api.repository.UserRepository;
 import mk.ukim.finki.api.service.UserService;
 import org.springframework.security.core.Authentication;
@@ -31,6 +31,14 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
+    @Override
+    public User getAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated() || !(authentication.getPrincipal() instanceof User)) {
+            throw new RuntimeException();
+        }
 
+        return (User) authentication.getPrincipal();
+    }
 
 }

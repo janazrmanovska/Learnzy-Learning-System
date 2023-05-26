@@ -26,6 +26,8 @@ public class Quiz {
 
     @OneToMany
     private List<Question> questions;
+    @ManyToOne
+    private Lesson lesson;
 
 
     @OneToMany(mappedBy = "quiz")

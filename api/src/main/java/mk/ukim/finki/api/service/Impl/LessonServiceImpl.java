@@ -2,10 +2,7 @@ package mk.ukim.finki.api.service.Impl;
 
 
 import jakarta.transaction.Transactional;
-import mk.ukim.finki.api.model.Category;
-import mk.ukim.finki.api.model.Lesson;
-import mk.ukim.finki.api.model.Level;
-import mk.ukim.finki.api.model.Quiz;
+import mk.ukim.finki.api.model.*;
 import mk.ukim.finki.api.repository.CategoryRepository;
 import mk.ukim.finki.api.repository.LessonRepository;
 import mk.ukim.finki.api.restController.requests.LessonRequest;
@@ -84,4 +81,26 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.findByLevel(level);
 
     }
+
+    @Override
+    public void finishLesson(User user, Lesson lesson) {
+        int score = calculateLessonScore(lesson);
+
+        user.setScore(user.getScore() + score);
+
+    }
+
+    private int calculateLessonScore(Lesson lesson) {
+        int score = 0;
+
+        Level level = lesson.getLevel();
+        if (level == Level.LEVEL_BASIC) {
+            score = 50;
+        } else if (level == Level.LEVEL_ADVANCED) {
+            score = 75;
+        }
+        return score;
+
+    }
+
 }

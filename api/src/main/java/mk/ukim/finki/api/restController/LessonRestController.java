@@ -1,9 +1,12 @@
 package mk.ukim.finki.api.restController;
 
 import mk.ukim.finki.api.model.Lesson;
+import mk.ukim.finki.api.model.LessonResult;
 import mk.ukim.finki.api.model.Level;
+import mk.ukim.finki.api.model.User;
 import mk.ukim.finki.api.restController.requests.LessonRequest;
 import mk.ukim.finki.api.service.LessonService;
+import mk.ukim.finki.api.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,9 +19,10 @@ import java.util.List;
 @RequestMapping("/api/lessons")
 public class LessonRestController {
     private final LessonService lessonService;
-
-    public LessonRestController(LessonService lessonService) {
+    private final UserService userService;
+    public LessonRestController(LessonService lessonService, UserService userService) {
         this.lessonService = lessonService;
+        this.userService = userService;
     }
     @GetMapping
     public ResponseEntity<List<Lesson>> getAllLessons() {
@@ -64,4 +68,15 @@ public class LessonRestController {
         List<Lesson> lessons = lessonService.getLessonsByLevel(level);
         return new ResponseEntity<>(lessons, HttpStatus.OK);
     }
+
+    @PostMapping("{lessonId}/finish")
+    public void finishLesson(@PathVariable Long lessonId) {
+        User user = userService.getAuthenticatedUser();
+
+        Lesson lesson = lessonService.getLessonById(lessonId);
+
+        lessonService.finishLesson(user, lesson);
+    }
+
+
 }

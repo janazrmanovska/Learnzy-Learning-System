@@ -17,6 +17,7 @@ public class Question {
 
     private String questionContent;
 
+
     @ElementCollection
     @CollectionTable(name = "question_answer", joinColumns = @JoinColumn(name = "question_id"))
     @MapKeyColumn(name = "answer_content")
@@ -24,6 +25,9 @@ public class Question {
     private Map<String, Boolean> possibleAnswers;
 
     private String chosenAnswer;
+    @ManyToOne
+    @JoinColumn(name = "quiz_id")
+    private Quiz quiz;
 
     private Boolean isCorrectlyAnswered;
 }
