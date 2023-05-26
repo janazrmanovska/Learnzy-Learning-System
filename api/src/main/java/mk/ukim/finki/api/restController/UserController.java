@@ -1,6 +1,9 @@
 package mk.ukim.finki.api.restController;
 
+import mk.ukim.finki.api.model.User;
 import mk.ukim.finki.api.service.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,4 +21,6 @@ public class UserController {
         String user = userService.getLoggedInUser();
         return user;
     }
+
+
 }
