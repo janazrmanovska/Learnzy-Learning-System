@@ -24,11 +24,9 @@ public class Quiz {
 
     private Integer totalQuestions;
 
-    @OneToMany(mappedBy = "quiz")
+    @OneToMany
     private List<Question> questions;
 
-    @OneToOne
-    private Lesson lesson;
 
     @OneToMany(mappedBy = "quiz")
     private Set<QuizScore> scores;
