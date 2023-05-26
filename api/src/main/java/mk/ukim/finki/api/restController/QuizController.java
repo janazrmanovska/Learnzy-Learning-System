@@ -67,13 +67,10 @@ public class QuizController {
 
     @PostMapping("{quizId}/finish")
     public void finishQuiz(@PathVariable Long quizId, @RequestBody Map<Long, String> userAnswers) {
-        // Retrieve the authenticated user (you can use Spring Security for authentication)
         User user = userService.getAuthenticatedUser();
 
-        // Retrieve the quiz from the database
         Quiz quiz = quizService.getQuizById(quizId);
 
-        // Finish the quiz and calculate the score
         quizService.finishQuiz(user, quiz, userAnswers);
     }
 }
