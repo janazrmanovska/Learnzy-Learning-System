@@ -17,7 +17,6 @@ public class QuestionMapper {
         List<String> questionAnswers = mapQuestionAnswers(question.getPossibleAnswers());
 
         questionDto.setQuestionId(question.getQuestionId());
-        questionDto.setQuizId(question.getQuiz().getQuizId());
         questionDto.setQuestionContent(question.getQuestionContent());
         questionDto.setAnswers(questionAnswers);
         questionDto.setChosenAnswer(question.getChosenAnswer());

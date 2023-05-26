@@ -50,9 +50,8 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionDto createQuestion(QuestionRequest questionRequest) {
         Question question = new Question();
 
-        question.setQuiz(this.quizRepository.findById(questionRequest.getQuizId()).get());
         question.setQuestionContent(questionRequest.getQuestionContent());
-        question.setQuestionContent(questionRequest.getPossibleAnswers().toString());
+        question.setPossibleAnswers(questionRequest.getPossibleAnswers());
 
         this.questionRepository.save(question);
         return this.questionMapper.mapToQuestionOutput(question);
