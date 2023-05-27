@@ -16,59 +16,38 @@ const Lessons: NextPage = () => {
     <Layout title={title} browserTabTitle={"Learnzy - Lessons"}>
       <SimpleGrid columns={4} spacing={10}>
         <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
-          title="Operations"
-          onClick={() =>
-            router.push(`/lessons/1?category=${category}?lesson=Operations`)
-          }
-        ></CardItem>
-        <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
+          imageUrl="/counting.png"
           title="Counting"
           onClick={() =>
             router.push(`/lessons/1?category=${category}?lesson=Counting`)
           }
         ></CardItem>
         <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
+          imageUrl="/operations.png"
           title="Operations"
           onClick={() =>
             router.push(`/lessons/1?category=${category}?lesson=Operations`)
           }
         ></CardItem>
         <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
+          imageUrl="/geometry 1.png"
           title="Geometry"
           onClick={() =>
             router.push(`/lessons/1?category=${category}?lesson=Geometry`)
           }
         ></CardItem>
         <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
-          title="Operations"
+          imageUrl="/clock-8 1.png"
+          title="Clock"
           onClick={() =>
-            router.push(`/lessons/1?category=${category}?lesson=Operations`)
+            router.push(`/lessons/1?category=${category}?lesson=Clock`)
           }
         ></CardItem>
         <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
-          title="Counting"
+          imageUrl="/geometry 1.png"
+          title="Memory"
           onClick={() =>
-            router.push(`/lessons/1?category=${category}?lesson=Counting`)
-          }
-        ></CardItem>
-        <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
-          title="Operations"
-          onClick={() =>
-            router.push(`/lessons/1?category=${category}?lesson=Operations`)
-          }
-        ></CardItem>
-        <CardItem
-          imageUrl="https://bit.ly/2Z4KKcF"
-          title="Geometry"
-          onClick={() =>
-            router.push(`/lessons/1?category=${category}?lesson=Geometry`)
+            router.push(`/lessons/1?category=${category}?lesson=Memory`)
           }
         ></CardItem>
       </SimpleGrid>

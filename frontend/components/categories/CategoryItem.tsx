@@ -10,15 +10,16 @@ type Props = {
 export const CategoryItem = ({ category, onCardClick }: Props) => {
   return (
     <VStack
-      spacing={0}
+      spacing={1}
       fontWeight={700}
       boxShadow="2xl"
-      w="10em"
-      h="10em"
+      w="11em"
+      h="11em"
       backgroundColor="#FFE2D6"
       borderRadius="50px"
       onClick={onCardClick}
       cursor="pointer"
+      p={4}
     >
       {category.icon}
       <Text color="#441907">{category.title}</Text>

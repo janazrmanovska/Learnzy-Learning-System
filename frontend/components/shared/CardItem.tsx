@@ -10,12 +10,18 @@ type Props = {
 
 export const CardItem = ({ imageUrl, title, onClick }: Props) => {
   return (
-    <Card borderTopRadius="20%" overflow="hidden" onClick={onClick}>
+    <Card
+      cursor="pointer"
+      borderTopRadius="20%"
+      overflow="hidden"
+      onClick={onClick}
+    >
       <Image src={imageUrl} alt="placeholder image" />
 
       <CardBody backgroundColor="#FFE2D6">
         <Text
-          fontSize="l"
+          fontSize="xl"
+          color="#441907"
           fontWeight="bold"
           textAlign="center"
           verticalAlign="center"

@@ -18,6 +18,7 @@ import {
   VStack,
   useDisclosure,
 } from "@chakra-ui/react";
+// import { BiBookBookmark } from "react-icons/bi";
 
 import { SidebarItem } from "../../types/sidebar";
 import { GENERATE_PROFILE_PICK_URL } from "../../constants/shared";
@@ -31,12 +32,15 @@ type Props = {
 const sidebarItems: SidebarItem[] = [
   { text: "Categories", path: "/", icon: <BsGrid3X3Gap /> },
   { text: "Quizzes", path: "/quizzes", icon: <CgNotes /> },
+  // { text: "Lessons", path: "/lessons", icon: <BiBookBookmark /> },
 ];
 
 export const Sidebar = ({ userName, onSignOut }: Props) => {
   const router = useRouter();
   const profileImageUrl = `${GENERATE_PROFILE_PICK_URL}${userName}`;
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const isQuizzes = router.asPath.includes("lessons?level=");
 
   return (
     <Box w="full" h="full" px="2">
@@ -55,6 +59,11 @@ export const Sidebar = ({ userName, onSignOut }: Props) => {
           {sidebarItems.map((item, index) => (
             <Button
               _hover={{ background: "#F4745861" }}
+              backgroundColor={
+                isQuizzes && item.text === "Quizzes"
+                  ? "#F4745861"
+                  : "transparent"
+              }
               borderRadius="0px"
               color="#441907"
               key={index}

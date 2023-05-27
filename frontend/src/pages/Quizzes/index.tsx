@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { NextPage } from "next";
 import { Layout } from "../../../components/layout/Layout";
 import {
@@ -8,14 +8,15 @@ import {
   MenuList,
   HStack,
   Text,
-  Button,
   MenuItem,
 } from "@chakra-ui/react";
 import { CardItem } from "../../../components/shared/CardItem";
+import { Quizzes } from "../../../constants/quizzes";
+import { CategoriesFilter, LevelFilter } from "../../../constants/filters";
 
 const Quizes: NextPage = () => {
-  const [category, setCategory] = useState("Category");
-  const [level, setLevel] = useState("Level");
+  const [category, setCategory] = useState("All");
+  const [level, setLevel] = useState("All");
 
   const handleCategorySelect = (value: string) => {
     setCategory(value);
@@ -25,50 +26,77 @@ const Quizes: NextPage = () => {
     setLevel(value);
   };
 
+  const filteredQuizzes = useMemo(() => {
+    return Quizzes.filter((quiz) => {
+      if (category === "All" && level === "All") return quiz;
+      if (category === "All" && level === quiz.level) return quiz;
+      if (category === quiz.category && level === "All") return quiz;
+      if (category === quiz.category && level === quiz.level) return quiz;
+      return "";
+    });
+  }, [category, level]);
+
   return (
-    <Layout browserTabTitle="Learnzy - Quizes" title="Quizes">
+    <Layout browserTabTitle="Learnzy - Quizzes" title="Quizzes">
       <div>
-        <HStack marginBottom="10px" spacing="15px">
-          <Text>{category}</Text>
+        <HStack pb={4} spacing={3}>
+          <Text>Category</Text>
           <Menu>
-            <MenuButton as={Button}>{category}</MenuButton>
-            <MenuList>
-              <MenuItem onClick={() => handleCategorySelect("Category 1")}>
-                Category 1
-              </MenuItem>
-              <MenuItem onClick={() => handleCategorySelect("Category 2")}>
-                Category 2
-              </MenuItem>
-              <MenuItem onClick={() => handleCategorySelect("Category 3")}>
-                Category 3
-              </MenuItem>
+            <MenuButton
+              w={48}
+              h={8}
+              borderRadius="5px"
+              backgroundColor="#F47458"
+            >
+              {category}
+            </MenuButton>
+            <MenuList backgroundColor="#F47458">
+              {CategoriesFilter.map((item) => {
+                return (
+                  <MenuItem
+                    _hover={{ backgroundColor: "#FFE2D6" }}
+                    backgroundColor="#F47458"
+                    onClick={() => handleCategorySelect(item)}
+                  >
+                    {item}
+                  </MenuItem>
+                );
+              })}
             </MenuList>
           </Menu>
-          <Text>{level}</Text>
+          <Text>Level</Text>
           <Menu>
-            <MenuButton as={Button}>{level}</MenuButton>
-            <MenuList>
-              <MenuItem onClick={() => handleLevelSelect("Level 1")}>
-                Level 1
-              </MenuItem>
-              <MenuItem onClick={() => handleLevelSelect("Level 2")}>
-                Level 2
-              </MenuItem>
-              <MenuItem onClick={() => handleLevelSelect("Level 3")}>
-                Level 3
-              </MenuItem>
+            <MenuButton
+              borderRadius="5px"
+              w={48}
+              h={8}
+              backgroundColor="#F47458"
+            >
+              {level}
+            </MenuButton>
+            <MenuList backgroundColor="#F47458">
+              {LevelFilter.map((item) => {
+                return (
+                  <MenuItem
+                    _hover={{ backgroundColor: "#FFE2D6" }}
+                    backgroundColor="#F47458"
+                    onClick={() => handleLevelSelect(item)}
+                  >
+                    {item}
+                  </MenuItem>
+                );
+              })}
             </MenuList>
           </Menu>
         </HStack>
         <SimpleGrid columns={4} spacingX="10px" gridGap="10px">
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
-          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          {filteredQuizzes.length !== 0 ? (
+            filteredQuizzes.map((quiz) => {
+              return <CardItem imageUrl={quiz.imageUrl} title={quiz.title} />;
+            })
+          ) : (
+            <Text>No Quizzes</Text>
+          )}
         </SimpleGrid>
       </div>
     </Layout>

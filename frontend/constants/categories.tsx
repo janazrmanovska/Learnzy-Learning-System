@@ -1,30 +1,19 @@
 import React from "react";
+import { Image } from "@chakra-ui/react";
 
-import { FoodImg } from "../images/categories/food";
-import { MathImg } from "../images/categories/math";
-import { TimeImg } from "../images/categories/time";
-import { WorldImg } from "../images/categories/world";
-import { MusicImg } from "../images/categories/music";
-import { NatureImg } from "../images/categories/nature";
-import { MarketImg } from "../images/categories/market";
-import { SchoolImg } from "../images/categories/school";
-import { WeatherImg } from "../images/categories/weather";
 import { CategoryDisplayItem } from "../types/categories";
-import { ClothesImg } from "../images/categories/clothes";
-import { CalendarImg } from "../images/categories/calendar";
-import { TransportationImg } from "../images/categories/transportation";
 
 export const CategoryItems: CategoryDisplayItem[] = [
-  { title: "Transportation", icon: <TransportationImg /> },
-  { title: "Clothes", icon: <ClothesImg /> },
-  { title: "Calendar", icon: <CalendarImg /> },
-  { title: "Market", icon: <MarketImg /> },
-  { title: "Food", icon: <FoodImg /> },
-  { title: "Math", icon: <MathImg /> },
-  { title: "School", icon: <SchoolImg /> },
-  { title: "Nature", icon: <NatureImg /> },
-  { title: "Music", icon: <MusicImg /> },
-  { title: "Time", icon: <TimeImg /> },
-  { title: "World", icon: <WorldImg /> },
-  { title: "Weather", icon: <WeatherImg /> },
+  { title: "Transportation", icon: <Image src="aeroplane.png" /> },
+  { title: "Clothes", icon: <Image src="/clothes.png" /> },
+  { title: "Calendar", icon: <Image src="/calendar.png" /> },
+  { title: "Market", icon: <Image src="/market.png" /> },
+  { title: "Food", icon: <Image src="/food.png" /> },
+  { title: "Math", icon: <Image src="/math.png" /> },
+  { title: "School", icon: <Image src="/school.png" /> },
+  { title: "Nature", icon: <Image src="/nature.png" /> },
+  { title: "Music", icon: <Image src="/music.png" /> },
+  { title: "Time", icon: <Image src="/time.png" /> },
+  { title: "World", icon: <Image src="/world.png" /> },
+  { title: "Weather", icon: <Image src="/weather.png" /> },
 ];
