@@ -6,6 +6,7 @@ import { Avatar, Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
 
 import { SidebarItem } from "../../types/sidebar";
 import { GENERATE_PROFILE_PICK_URL } from "../../constants/shared";
+import { useRouter } from "next/router";
 
 type Props = {
   userName: string;
@@ -13,11 +14,12 @@ type Props = {
 };
 
 const sidebarItems: SidebarItem[] = [
-  { text: "Categories", path: "/categories", icon: <BsGrid3X3Gap /> },
+  { text: "Categories", path: "/", icon: <BsGrid3X3Gap /> },
   { text: "Quizzes", path: "/quizzes", icon: <CgNotes /> },
 ];
 
 export const Sidebar = ({ userName, onSignOut }: Props) => {
+  const router = useRouter();
   const profileImageUrl = `${GENERATE_PROFILE_PICK_URL}${userName}`;
 
   return (
@@ -50,7 +52,12 @@ export const Sidebar = ({ userName, onSignOut }: Props) => {
           ))}
         </VStack>
         <Flex flexDir="column">
-          <Flex alignItems="center" pb="4">
+          <Flex
+            alignItems="center"
+            pb="4"
+            onClick={() => router.push("/profile")}
+            cursor={"pointer"}
+          >
             <Avatar
               size="sm"
               rounded="full"

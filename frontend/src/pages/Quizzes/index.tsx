@@ -1,9 +1,17 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import { Layout } from "../../../components/layout/Layout";
-import { SimpleGrid, Menu, MenuButton, MenuList, HStack, Text, Button, MenuItem } from "@chakra-ui/react";
-// import { ChevronDownIcon } from "@chakra-ui/icons";
-import { QuizCard } from "./quizCard";
+import {
+  SimpleGrid,
+  Menu,
+  MenuButton,
+  MenuList,
+  HStack,
+  Text,
+  Button,
+  MenuItem,
+} from "@chakra-ui/react";
+import { CardItem } from "../../../components/shared/CardItem";
 
 const Quizes: NextPage = () => {
   const [category, setCategory] = useState("Category");
@@ -20,39 +28,47 @@ const Quizes: NextPage = () => {
   return (
     <Layout browserTabTitle="Learnzy - Quizes" title="Quizes">
       <div>
-        <HStack marginBottom="10px" spacing='15px'>
+        <HStack marginBottom="10px" spacing="15px">
           <Text>{category}</Text>
           <Menu>
-            <MenuButton as={Button} >
-              {category}
-            </MenuButton>
+            <MenuButton as={Button}>{category}</MenuButton>
             <MenuList>
-              <MenuItem onClick={() => handleCategorySelect("Category 1")}>Category 1</MenuItem>
-              <MenuItem onClick={() => handleCategorySelect("Category 2")}>Category 2</MenuItem>
-              <MenuItem onClick={() => handleCategorySelect("Category 3")}>Category 3</MenuItem>
+              <MenuItem onClick={() => handleCategorySelect("Category 1")}>
+                Category 1
+              </MenuItem>
+              <MenuItem onClick={() => handleCategorySelect("Category 2")}>
+                Category 2
+              </MenuItem>
+              <MenuItem onClick={() => handleCategorySelect("Category 3")}>
+                Category 3
+              </MenuItem>
             </MenuList>
           </Menu>
           <Text>{level}</Text>
           <Menu>
-            <MenuButton as={Button}>
-              {level}
-            </MenuButton>
+            <MenuButton as={Button}>{level}</MenuButton>
             <MenuList>
-              <MenuItem onClick={() => handleLevelSelect("Level 1")}>Level 1</MenuItem>
-              <MenuItem onClick={() => handleLevelSelect("Level 2")}>Level 2</MenuItem>
-              <MenuItem onClick={() => handleLevelSelect("Level 3")}>Level 3</MenuItem>
+              <MenuItem onClick={() => handleLevelSelect("Level 1")}>
+                Level 1
+              </MenuItem>
+              <MenuItem onClick={() => handleLevelSelect("Level 2")}>
+                Level 2
+              </MenuItem>
+              <MenuItem onClick={() => handleLevelSelect("Level 3")}>
+                Level 3
+              </MenuItem>
             </MenuList>
           </Menu>
         </HStack>
         <SimpleGrid columns={4} spacingX="10px" gridGap="10px">
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
-          <QuizCard imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></QuizCard>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
+          <CardItem imageUrl="https://bit.ly/2Z4KKcF" title="Quiz 1"></CardItem>
         </SimpleGrid>
       </div>
     </Layout>
