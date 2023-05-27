@@ -5,36 +5,22 @@ import {
   Center,
   FormControl,
   FormLabel,
-  Heading,
+  Text,
   Input,
   Stack,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
+import { VscArrowRight } from "react-icons/vsc";
+import { useRouter } from "next/router";
 
 type FormEvent = React.FormEvent<HTMLFormElement>;
-type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 const Register: NextPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleUsernameChange = (event: InputEvent) => {
-    setUsername(event.target.value);
-  };
-
-  const handleEmailChange = (event: InputEvent) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event: InputEvent) => {
-    setPassword(event.target.value);
-  };
-
-  const handleConfirmPasswordChange = (event: InputEvent) => {
-    setConfirmPassword(event.target.value);
-  };
+  const router = useRouter();
+  const [username] = useState("");
+  const [email] = useState("");
+  const [password] = useState("");
+  const [confirmPassword] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -48,70 +34,71 @@ const Register: NextPage = () => {
     <Box maxW="100%" mx="auto" backgroundColor="#FFCDB8">
       <Center h="100vh">
         <Box w="md">
-          <Heading mb="8" textAlign="center">Sign Up</Heading>
+          <Text
+            fontSize="6xl"
+            fontWeight={700}
+            color="#441907"
+            textAlign="center"
+          >
+            Register
+          </Text>
           <form onSubmit={handleSubmit}>
             <Stack spacing="6">
               <FormControl>
-                <FormLabel htmlFor="username">Username</FormLabel>
+                <FormLabel color="#441907" htmlFor="username">
+                  Username
+                </FormLabel>
                 <Input
-                  id="username"
-                  name="username"
-                  type="text"
-                  value={username}
-                  onChange={handleUsernameChange}
-                  autoComplete="username"
-                  required
-                  bg="#FFFFFF"
-                   focusBorderColor="orange.500"
+                  type="username"
+                  variant="flushed"
+                  color="black"
+                  placeholder="username"
+                  focusBorderColor="orange.700"
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="email">Email</FormLabel>
+                <FormLabel color="#441907" htmlFor="email">
+                  Email
+                </FormLabel>
                 <Input
-                  id="email"
-                  name="email"
                   type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  autoComplete="email"
-                  required
-                  bg="#FFFFFF" 
-                  focusBorderColor="orange.500"
+                  variant="flushed"
+                  color="black"
+                  placeholder="example@example.com"
+                  focusBorderColor="orange.700"
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <FormLabel color="#441907" htmlFor="password">
+                  Password
+                </FormLabel>
                 <Input
-                  id="password"
-                  name="password"
                   type="password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  autoComplete="new-password"
-                  required
-                  bg="#FFFFFF" 
-                  focusBorderColor="orange.500"
+                  variant="flushed"
+                  color="black"
+                  focusBorderColor="orange.700"
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="confirm-password">
+                <FormLabel color="#441907" htmlFor="confirm-password">
                   Confirm Password
                 </FormLabel>
                 <Input
-                  id="confirm-password"
-                  name="confirm-password"
                   type="password"
-                  value={confirmPassword}
-                  onChange={handleConfirmPasswordChange}
-                  autoComplete="new-password"
-                  required
-                  bg="#FFFFFF" 
-                  focusBorderColor="orange.500"
+                  variant="flushed"
+                  color="black"
+                  focusBorderColor="orange.700"
                 />
               </FormControl>
               <Center>
-                <Button type="submit" backgroundColor="#F47458" color="white" size="md" fontSize="sm" w="100px">
-                  Sign Up
+                <Button
+                  w="186px"
+                  borderRadius="23px"
+                  backgroundColor="#F47458"
+                  rightIcon={<VscArrowRight />}
+                  onClick={() => router.push(`/`)}
+                >
+                  SIGN UP
                 </Button>
               </Center>
             </Stack>
@@ -122,4 +109,4 @@ const Register: NextPage = () => {
   );
 };
 
-export default Register
+export default Register;

@@ -1,79 +1,70 @@
-import { useState } from "react";
 import {
   Box,
-  Button,
   Center,
-  FormControl,
-  FormLabel,
-  Heading,
+  Text,
   Input,
   Stack,
+  Button,
+  VStack,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-
-type FormEvent = React.FormEvent<HTMLFormElement>;
-type InputEvent = React.ChangeEvent<HTMLInputElement>;
+import { useRouter } from "next/router";
+import { VscArrowRight } from "react-icons/vsc";
 
 const Login: NextPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleEmailChange = (event: InputEvent) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event: InputEvent) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
-
+  const router = useRouter();
   return (
     <Box maxW="100%" mx="auto" backgroundColor="#FFCDB8">
       <Center h="100vh">
-        <Box w="md">
-          <Heading mb="8" textAlign="center">Sign In</Heading>
-          <form onSubmit={handleSubmit}>
-            <Stack spacing="6">
-              <FormControl>
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  autoComplete="email"
-                  required
-                  bg="#FFFFFF" 
-                  focusBorderColor="orange.500"
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="password">Password</FormLabel>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  autoComplete="new-password"
-                  required
-                  bg="#FFFFFF" 
-                  focusBorderColor="orange.500"
-                />
-              </FormControl>
-              <Center>
-                <Button type="submit" backgroundColor="#F47458" color="white" size="md" fontSize="sm" w="100px">
-                  Sign Up
+        <Box borderWidth="10px" borderColor="#FFE2D6" w="600px" p={10}>
+          <Box borderWidth="10px" borderColor="#FFE2D6" w="500px" p={10}>
+            <Text
+              fontSize="6xl"
+              fontWeight={700}
+              color="#441907"
+              textAlign="center"
+            >
+              Sign In
+            </Text>
+            <Stack spacing={4}>
+              <Text color="#441907">Email</Text>
+              <Input
+                type="email"
+                variant="flushed"
+                color="black"
+                placeholder="example@example.com"
+                focusBorderColor="orange.700"
+              />
+              <Text color="#441907">Password</Text>
+              <Input
+                type="password"
+                variant="flushed"
+                color="black"
+                focusBorderColor="orange.700"
+              />
+              <VStack>
+                <Button
+                  w="186px"
+                  borderRadius="23px"
+                  backgroundColor="#F47458"
+                  rightIcon={<VscArrowRight />}
+                  onClick={() => router.push(`/`)}
+                >
+                  SIGN IN
                 </Button>
-              </Center>
+                <Text color="#00000033">
+                  Do not have an account?
+                  <Text
+                    color="#F47458"
+                    cursor="pointer"
+                    onClick={() => router.push(`/register`)}
+                  >
+                    Register here
+                  </Text>
+                </Text>
+              </VStack>
             </Stack>
-          </form>
+          </Box>
         </Box>
       </Center>
     </Box>
