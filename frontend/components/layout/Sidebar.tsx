@@ -2,7 +2,22 @@ import React from "react";
 import { CgNotes } from "react-icons/cg";
 import { BsGrid3X3Gap } from "react-icons/bs";
 import { VscSignOut } from "react-icons/vsc";
-import { Avatar, Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  VStack,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 import { SidebarItem } from "../../types/sidebar";
 import { GENERATE_PROFILE_PICK_URL } from "../../constants/shared";
@@ -21,6 +36,7 @@ const sidebarItems: SidebarItem[] = [
 export const Sidebar = ({ userName, onSignOut }: Props) => {
   const router = useRouter();
   const profileImageUrl = `${GENERATE_PROFILE_PICK_URL}${userName}`;
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box w="full" h="full" px="2">
@@ -70,10 +86,39 @@ export const Sidebar = ({ userName, onSignOut }: Props) => {
             </Text>
           </Flex>
 
-          <Button w="full" backgroundColor="#F47458" onClick={onSignOut}>
+          <Button w="full" backgroundColor="#F47458" onClick={onOpen}>
             <VscSignOut />
             <Text ps="2">Sign Out</Text>
           </Button>
+          {isOpen && (
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Are you sure you want to log out?</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody></ModalBody>
+
+                <ModalFooter gap={20}>
+                  <Button
+                    borderRadius="23px"
+                    backgroundColor="#FFF3EE"
+                    color="black"
+                    onClick={onClose}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    w="186px"
+                    borderRadius="23px"
+                    backgroundColor="#F47458"
+                    onClick={() => router.push(`/login`)}
+                  >
+                    Log out
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+          )}
         </Flex>
       </Flex>
     </Box>
